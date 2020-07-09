@@ -9,12 +9,14 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Server {
+public class Server extends Thread {
     private int port;
     public static ArrayList<Socket> listSk = new ArrayList<>();
+    private ServerSocket server = null;
 
-    public Server(int port) {
+    public Server(int port) throws IOException {
         this.port = port;
+        //server = new ServerSocket(port);
     }
 
     private void execute() throws IOException {
@@ -30,17 +32,28 @@ public class Server {
             read.start();
         }
 
-    }
+//    @Override
+//    public void run() {
+//        System.out.println("Server đợi kết nối...");
+//        while (true){
+//            Socket socket = null;
+//            try {
+//                socket = server.accept();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            System.out.println("Server đã kết nối với "+ socket);
+//            Server.listSk.add(socket);
+//            ReadServer read = new ReadServer(socket);
+//            read.start();
+//        }
+//    }
+//
+//    public void serverWrite(){
+//        WriteServer write = new WriteServer();
+//        write.start();
+//    }
 
-    public static void main(String[] args) throws IOException {
-        InetAddress host = InetAddress.getLocalHost();
-        System.out.println(host);
-        int port = (int) Math.floor(Math.random()*5000);
-        System.out.println(port);
-        //Server.listSk = new ArrayList<>();
-        Server server = new Server(port);
-        server.execute();
-    }
 }
 
 class ReadServer extends Thread{
@@ -103,5 +116,18 @@ class WriteServer extends Thread {
 
         }
     }
+}
+
+static class TestServer {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        InetAddress host = InetAddress.getLocalHost();
+        System.out.println(host);
+        int portRandom = 8888;// (int) Math.floor(Math.random()*5500);
+        System.out.println(portRandom);
+        Server server = new Server(portRandom);
+        server.execute();
+        server.start();
+    }
+}
 }
 
