@@ -11,19 +11,21 @@ import java.util.Scanner;
 public class Client {
     private InetAddress host;
     private int port;
+    private String name;
 
-    public Client(InetAddress host, int port) {
+    public Client(String name, InetAddress host, int port) {
+        this.name = name;
         this.host = host;
         this.port = port;
     }
 
     public void execute() throws IOException {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nhập tên : ");
-        String name = sc.nextLine();
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Nhập tên : ");
+//        String name = sc.nextLine();
 
         Socket client = new Socket(host,port);
-        System.out.println();
+        //System.out.println();
         ReadClient read = new ReadClient(client);
         read.start();
         WriteClient write = new WriteClient(client, name);
@@ -32,9 +34,12 @@ public class Client {
     }
 
     public static void main(String[] args) throws IOException {
-        InetAddress host = InetAddress.getLocalHost();
+//        InetAddress hosts = InetAddress.getLocalHost();
+//        String host = hosts.getHostAddress();
+        InetAddress host = InetAddress.getByName("192.168.2.198");
+        //InetAddress host = InetAddress.getLocalHost();
         System.out.println(host);
-        Client client = new Client(host, 15797);
+        Client client = new Client("abc", host, 15797);
         client.execute();
     }
 }
@@ -102,7 +107,7 @@ class Run{
     public static void main(String[] args) throws IOException {
         InetAddress host = InetAddress.getLocalHost();
         System.out.println(host);
-        Client client1 = new Client(host, 15797);
+        Client client1 = new Client("bcd", host, 8888);
         client1.execute();
     }
 }

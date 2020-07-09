@@ -10,7 +10,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <TextField fx:id="port" layoutX="682.0" layoutY="38.0" onAction="#port" prefHeight="31.0" prefWidth="65.0" />
-      <Label alignment="CENTER" layoutX="23.0" prefHeight="75.0" prefWidth="84.0" text="Client">
+      <Label alignment="CENTER" layoutX="23.0" prefHeight="75.0" prefWidth="84.0" text="Client:">
          <font>
             <Font size="24.0" />
          </font>
@@ -34,5 +34,6 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <TextField fx:id="name" layoutX="107.0" layoutY="40.0" text="Name" />
    </children>
 </AnchorPane>

@@ -35,8 +35,10 @@ public class Server {
     public static void main(String[] args) throws IOException {
         InetAddress host = InetAddress.getLocalHost();
         System.out.println(host);
+        int port = (int) Math.floor(Math.random()*5000);
+        System.out.println(port);
         //Server.listSk = new ArrayList<>();
-        Server server = new Server(15797);
+        Server server = new Server(port);
         server.execute();
     }
 }

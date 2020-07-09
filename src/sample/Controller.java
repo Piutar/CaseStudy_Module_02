@@ -1,47 +1,68 @@
 package sample;
 
+import chat_tcp.Client;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Controller {
+    @FXML
+    private TextField name;
+
+    @FXML
+    private TextField port;
+
+    @FXML
+    private TextArea textout;
 
     @FXML
     private TextField textin;
+
     @FXML
-    private TextField port;
+    private Button send;
+
     @FXML
     private TextField ip;
 
-    public void textin(javafx.event.ActionEvent event){
+    @FXML
+    private Button connect;
 
+    @FXML
+    void connect(ActionEvent event) throws UnknownHostException {
+        Client client = new Client(name.getText(), InetAddress.getByName(ip.getText()), Integer.parseInt(port.getText()));
+    }
+
+    @FXML
+    void ip(ActionEvent event) {
 
     }
 
-    public void textout(javafx.event.ActionEvent event){
-
+    @FXML
+    void port(ActionEvent event) {
 
     }
 
-    public void ip(javafx.event.ActionEvent event){
-        String ipServer = ip.getText();
+    @FXML
+    void send(ActionEvent event) {
+        Textout(event);
+
     }
 
-    public void port(javafx.event.ActionEvent event){
-        int portServer =Integer.parseInt(port.getText());
+    @FXML
+    void textin(ActionEvent event) {
+        Textout(event);
+        textin.setText(null);
+
     }
 
-    public void connect(javafx.event.ActionEvent event){
-    }
-
-    public void send(javafx.event.ActionEvent event){
-        String textSend = textin.getText();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("0123" + textSend);
-        alert.show();
+    @FXML
+    void Textout(ActionEvent event){
+        textout.setText(textin.getText());
     }
 
 }
