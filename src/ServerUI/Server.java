@@ -5,7 +5,6 @@ import javafx.scene.control.TextArea;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -50,18 +49,6 @@ public class Server extends Thread {
     }
 
 
-//    public static void main(String[] args) throws IOException {
-//        InetAddress host = InetAddress.getLocalHost();
-//        System.out.println(host);
-//        int port = (int) Math.floor(Math.random()*5500);
-//        port = 8888;
-//        System.out.println(port);
-//        TextArea in = null;
-//        Server server = new Server(port, in);
-//        //server.execute();
-//    }
-}
-
 class ReadServer extends Thread{
     private Socket socket;
     private TextArea in;
@@ -82,7 +69,6 @@ class ReadServer extends Thread{
                 if (sms.contains("exit")){
                     Server.listSk.remove(socket);
                     in.setText(in.getText() +"\n"+"Đã ngắt kết nối với" +socket);
-                    System.out.println("Đã ngắt kết nối với" +socket);
                     dis.close();
                     socket.close();
                     continue; // Ngắt kết nối và không gửi từ exit
@@ -101,7 +87,7 @@ class ReadServer extends Thread{
                 dis.close();
                 socket.close();
             } catch (Exception ex) {
-                System.out.println("Ngắt kết nối Server");
+                in.setText(in.getText() +"\n"+"Đã ngắt kết nối với Server");
             }
         }
     }
@@ -125,5 +111,6 @@ class WriteServer extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
     }
 }

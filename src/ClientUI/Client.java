@@ -25,7 +25,7 @@ public class Client {
         }
     }
 
-    public void read(TextArea in){
+    public void read(TextArea in) throws IOException {
         ReadClient read = new ReadClient(client, in);
         read.start();
     }
@@ -40,17 +40,18 @@ public class Client {
 class ReadClient extends Thread{
     private Socket client;
     private TextArea in;
-
-    public ReadClient(Socket client, TextArea in){
+    DataInputStream dis = null;
+    public ReadClient(Socket client, TextArea in) throws IOException {
         this.client = client;
         this.in = in;
+        dis = new DataInputStream(client.getInputStream());
     }
 
     @Override
     public void run() {
-        DataInputStream dis = null;
+
         try {
-            dis = new DataInputStream(client.getInputStream());
+
             while (true) {
                 String sms = dis.readUTF();
                 System.out.println(sms);
@@ -85,6 +86,7 @@ class WriteClient extends Thread {
         try {
             dos = new DataOutputStream(client.getOutputStream());
             dos.writeUTF(name + ": " + sms);
+            dos.flush();
         } catch (Exception e) {
             try {
                 dos.close();
@@ -93,18 +95,5 @@ class WriteClient extends Thread {
                 System.out.println("Ngắt kết nối Server");
             }
         }
-    }
-}
-
-class Run{
-    public static void main(String[] args) throws IOException {
-//        InetAddress host = InetAddress.getLocalHost();
-//        String host = hosts.getHostAddress();
-        InetAddress host = InetAddress.getByName("192.168.56.1");
-        System.out.println(host);
-        Client client = new Client("abc", host, 8888);
-        client.write(" 00 ");
-        TextArea in = null;
-        client.read(in);
     }
 }

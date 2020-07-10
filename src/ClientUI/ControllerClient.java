@@ -58,6 +58,7 @@ public class ControllerClient {
     @FXML
     void textin(ActionEvent event) {
         send(event);
+        //textout.appendText("000");
 
 
     }
@@ -65,12 +66,8 @@ public class ControllerClient {
     void display(){
         String text = textout.getText();
         textout.setText(text + "\n" + name.getText() + ": " + textin.getText());
+        //textout.appendText("\n" + name.getText() + ": " + textin.getText());
         textin.setText(null);
     }
 
-}
-class Test{
-    public void display(TextArea out){
-        out.setText("00000");
-    }
 }

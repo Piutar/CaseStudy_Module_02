@@ -32,28 +32,6 @@ public class Server extends Thread {
             read.start();
         }
 
-//    @Override
-//    public void run() {
-//        System.out.println("Server đợi kết nối...");
-//        while (true){
-//            Socket socket = null;
-//            try {
-//                socket = server.accept();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println("Server đã kết nối với "+ socket);
-//            Server.listSk.add(socket);
-//            ReadServer read = new ReadServer(socket);
-//            read.start();
-//        }
-//    }
-//
-//    public void serverWrite(){
-//        WriteServer write = new WriteServer();
-//        write.start();
-//    }
-
 }
 
 class ReadServer extends Thread{

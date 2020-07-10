@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
@@ -100,14 +99,5 @@ class WriteClient extends Thread {
                 System.out.println("Ngắt kết nối Server");
             }
         }
-    }
-}
-
-class Run{
-    public static void main(String[] args) throws IOException {
-        InetAddress host = InetAddress.getLocalHost();
-        System.out.println(host);
-        Client client1 = new Client("bcd", host, 8888);
-        client1.execute();
     }
 }
