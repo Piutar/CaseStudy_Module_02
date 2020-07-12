@@ -8,15 +8,24 @@ import javafx.stage.Stage;
 
 public class MainClient extends Application {
 
+//    @Override
+//    public void start(Stage primaryStage) throws Exception{
+//        Parent root = FXMLLoader.load(getClass().getResource("ClinetUI.fxml"));
+//        primaryStage.setTitle("Chat");
+//        Scene scene = new Scene(root);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//    }
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ClinetUI.fxml"));
-        primaryStage.setTitle("Chat");
+        Parent root = FXMLLoader.load(getClass().getResource("firstLogin.fxml"));
+        primaryStage.setTitle("Login");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);
