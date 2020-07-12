@@ -53,7 +53,7 @@ public class ControllerServer {
     void send(ActionEvent event) throws UnknownHostException {
         if (textin.getText() != null){
             server.write(textin.getText());
-            textout.setText(textout.getText() + "\n" + "Server: " + textin.getText());
+            textout.appendText("\n" + "Server: " + textin.getText());
         }
         textin.setText(null);
     }

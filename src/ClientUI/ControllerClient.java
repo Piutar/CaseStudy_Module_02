@@ -50,7 +50,8 @@ public class ControllerClient {
     void send(ActionEvent event) {
         if (textin.getText() != null){
             client.write(textin.getText());
-            textout.setText(textout.getText() + "\n" + name.getText() + ": " + textin.getText());
+            textout.appendText("\n" + name.getText() + ": " + textin.getText());
+            //textout.setText(textout.getText() + "\n" + name.getText() + ": " + textin.getText());
         }
         textin.setText(null);
     }
@@ -65,7 +66,7 @@ public class ControllerClient {
 
     void display(){
         String text = textout.getText();
-        textout.setText(text + "\n" + name.getText() + ": " + textin.getText());
+        textout.appendText("\n" + name.getText() + ": " + textin.getText());
         //textout.appendText("\n" + name.getText() + ": " + textin.getText());
         textin.setText(null);
     }

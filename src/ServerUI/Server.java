@@ -36,7 +36,7 @@ public class Server extends Thread {
                 e.printStackTrace();
             }
 
-            in.setText(in.getText()+"\n" + "Server đã kết nối với "+ socket);
+            in.appendText("\n" + "Server đã kết nối với "+ socket);
             Server.listSk.add(socket);
             ReadServer read = new ReadServer(socket, in);
             read.start();
@@ -65,10 +65,10 @@ class ReadServer extends Thread{
             dis = new DataInputStream(socket.getInputStream());
             while (true) {
                 String sms = dis.readUTF();
-                in.setText(in.getText() + "\n" + sms);
+                in.appendText("\n" + sms);
                 if (sms.contains("exit")){
                     Server.listSk.remove(socket);
-                    in.setText(in.getText() +"\n"+"Đã ngắt kết nối với" +socket);
+                    in.appendText("\n"+"Đã ngắt kết nối với" +socket);
                     dis.close();
                     socket.close();
                     continue; // Ngắt kết nối và không gửi từ exit
@@ -87,7 +87,7 @@ class ReadServer extends Thread{
                 dis.close();
                 socket.close();
             } catch (Exception ex) {
-                in.setText(in.getText() +"\n"+"Đã ngắt kết nối với Server");
+                in.appendText("\n"+"Đã ngắt kết nối với Server");
             }
         }
     }

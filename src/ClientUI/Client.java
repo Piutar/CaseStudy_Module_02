@@ -55,7 +55,8 @@ class ReadClient extends Thread{
             while (true) {
                 String sms = dis.readUTF();
                 System.out.println(sms);
-                in.setText(in.getText() + "\n" +sms);
+                in.appendText("\n" + sms);
+                //in.setText(in.getText() + "\n" +sms);
             }
         } catch (Exception e) {
 
